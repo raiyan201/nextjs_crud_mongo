@@ -3,11 +3,12 @@
 import Link from "next/link"
 import { HiOutlineTrash, HiPencilAlt } from "react-icons/hi";
 import { DELETE } from "../app/api/topics/route";
+import RemoveBtn from "./RemoveBtn";
+import UpdateBtn from "./UpdateBtn"
 
-
-const getTopics=async () =>{
+const getTopics = async () =>{
     try {
-        const res=await fetch("http://localhost:3000/api/topics",{cache:"no-store"})
+        const res= await fetch("http://localhost:3000/api/topics",{cache:"no-store"})
         console.log('res',res)
         if(!res.ok){
             throw new Error("failed to fetchd data");        
@@ -23,14 +24,6 @@ const getTopics=async () =>{
 
 
 
-const removeTopic=async()=>{
-    const res=await fetch(`http://localhost:3000/api/topics?id=${id}`,
-        {method:"DELETE"},
-    )
-    if(res.ok){
-        alert("deleted")
-    }
-}
 
 
 export const Dashboard = async () => {
@@ -51,9 +44,10 @@ export const Dashboard = async () => {
                 </div>
 
                 <div className="flex gap-2">
-                    <Link  href={"/editTopic/1"}><HiPencilAlt size={24}/></Link>
-                    <button onClick={'removeTopic'} className="text-red-500"> <HiOutlineTrash size={24} />
-                    </button>
+                <UpdateBtn id={t._id}/>
+                < RemoveBtn id={t._id}/>
+                    {/* <button onClick={'removeTopic'} className="text-red-500"> <HiOutlineTrash size={24} />
+                    </button> */}
                 </div>
       </div>
       

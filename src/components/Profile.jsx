@@ -32,12 +32,12 @@ const Profile=()=>{
 
     return(
 
-        <div className="min-h-screen bg-gray-300 flex flex-col justify-center items-center">
-            <div className="bg-white px-16 pt-8 pb-12 mb-4">
+        // <div className="min-h-screen bg-gray-300 flex flex-col justify-center items-center">
+        //     <div className="bg-white px-16 pt-8 pb-12 mb-4">
 
-            <h1 className="text-3xl mb-4 text-center">Profile</h1>
+        //     <h1 className="text-3xl mb-4 text-center">Profile</h1>
 
-           <p>Welcome To Profile Page</p>
+        //    <p>Welcome To Profile Page</p>
                 <button
                 onClick={(e)=>{
                     onProfile(e)
@@ -46,8 +46,8 @@ const Profile=()=>{
                  >
                     <HiOutlineLogout />
                 </button>
-        </div>
-        </div>
+        // </div>
+        // </div>
     )
 }
 

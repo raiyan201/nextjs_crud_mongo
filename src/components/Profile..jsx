@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Input from "./Input"
 import { useState } from "react";
+import { HiOutlineLogout } from "react-icons/hi";
 
 
 const Profile=()=>{

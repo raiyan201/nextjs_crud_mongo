@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
 export async function PUT(request,{params}){
     await connectDB()
     const {id}=params
-    const{title:title,description:description} =await request.json();
+    const{newTitle:title,newDescription:description} =await request.json();
     await Topic.findByIdAndUpdate(id,{title,description})
     return NextResponse.json({msg:"Topic Updated"},{status:200})
 }

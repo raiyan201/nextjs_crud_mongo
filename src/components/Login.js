@@ -30,7 +30,7 @@ const Login=()=>{
                 console.log('response',response)
                 setData(defaultData)
                 if(response.status==200){
-                    router.push('/profile')
+                    router.push('/dashboard')
                 }
             }catch(err){
                 console.log(err)

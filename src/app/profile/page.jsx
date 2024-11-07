@@ -6,6 +6,7 @@ import { useState } from "react";
 const defaultData={username:"",password:""};
 import axios from 'axios'
 import { useRouter } from "next/navigation";
+import { HiOutlineLogout } from "react-icons/hi";
 
 const Profile=()=>{
 
@@ -43,9 +44,10 @@ const Profile=()=>{
                 onClick={(e)=>{
                     onProfile(e)
                 }}
-                    className="bg-red-600 text-white py-2 px-2 rounded-full w-full"
+                    className="bg-red-500 text-white py-3 px-5 rounded-full w-fit"
                  >
-                    Logout
+                    <HiOutlineLogout />
+
                 </button>
 
         </div>

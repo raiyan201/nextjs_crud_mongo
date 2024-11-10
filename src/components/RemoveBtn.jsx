@@ -2,8 +2,14 @@
 import { useRouter } from "next/navigation";
 import { HiOutlineTrash, HiPencilAlt } from "react-icons/hi";
 
+import { useContext } from "react";
+import UserContext from "../app/context/userContext";
+
+
 const RemoveBtn = ({id}) => {
 const router = useRouter();
+
+
 
 const removeTopic=async()=>{
     const confirmed = confirm("Are you sure you want to Delete?");

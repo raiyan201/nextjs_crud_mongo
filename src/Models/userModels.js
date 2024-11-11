@@ -28,6 +28,10 @@ const topicSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  delete_status:{
+    type:Boolean,
+    default:false
+  }
 });
 
 // Ensure Topic model is only created once

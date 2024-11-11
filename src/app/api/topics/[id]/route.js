@@ -1,4 +1,4 @@
-import { connect } from "http2";
+// import { connect } from "http2";
 import { Topic } from "../../../../Models/userModels";
 import connectDB from "../../../../db/config";
 import { NextResponse } from "next/server";
@@ -22,5 +22,17 @@ export async function GET(request,{params}){
     }
     catch(err){
         console.log(err)
+    }
+}
+
+
+export async function PATCH(request,{params}){
+    await connectDB()
+    const{id}=params
+    const {action}=await request.json()
+    console.log('action',action)
+    if(action=="softDelete"){
+        await Topic.findByIdAndUpdate(id,{delete_status:true})
+        return NextResponse.json({msg:"Soft Deletion Successfull"})
     }
 }

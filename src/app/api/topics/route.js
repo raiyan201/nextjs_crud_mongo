@@ -23,7 +23,7 @@ export async function GET(){
     try{
         await connectDB()
         // const body=await req.json();
-        const topics=await Topic.find()
+        const topics=await Topic.find({"delete_status":false})
         return NextResponse.json({topics})
     }
     catch(err)

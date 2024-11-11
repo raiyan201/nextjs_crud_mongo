@@ -5,6 +5,7 @@ import { HiOutlineTrash, HiPencilAlt } from "react-icons/hi";
 import { DELETE } from "../app/api/topics/route";
 import RemoveBtn from "./RemoveBtn";
 import UpdateBtn from "./UpdateBtn"
+import SoftDeleteBtn from "./SoftDeleteBtn"
 
 const getTopics = async () =>{
     try {
@@ -46,6 +47,7 @@ export const Dashboard = async () => {
                 <div className="flex gap-2">
                 <UpdateBtn id={t._id}/>
                 < RemoveBtn id={t._id}/>
+                < SoftDeleteBtn   id={t._id}/>
                     {/* <button onClick={'removeTopic'} className="text-red-500"> <HiOutlineTrash size={24} />
                     </button> */}
                 </div>

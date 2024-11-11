@@ -38,7 +38,7 @@ const Profile=()=>{
         //     <h1 className="text-3xl mb-4 text-center">Profile</h1>
 
         //    <p>Welcome To Profile Page</p>
-                <button
+                <button title="Logout"
                 onClick={(e)=>{
                     onProfile(e)
                 }}

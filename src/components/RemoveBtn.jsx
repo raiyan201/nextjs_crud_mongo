@@ -1,15 +1,13 @@
 'use client'
+
 import { useRouter } from "next/navigation";
 import { HiOutlineTrash, HiPencilAlt } from "react-icons/hi";
 
 import { useContext } from "react";
 import UserContext from "../app/context/userContext";
 
-
 const RemoveBtn = ({id}) => {
 const router = useRouter();
-
-
 
 const removeTopic=async()=>{
     const confirmed = confirm("Are you sure you want to Delete?");
@@ -25,7 +23,7 @@ const removeTopic=async()=>{
 }
 
   return (
-        <button onClick={removeTopic} className="text-red-500"> <HiOutlineTrash size={24} />
+        <button title="Delete this item" onClick={removeTopic} className="text-red-500"> <HiOutlineTrash size={24} />
         </button>    
   )
 }

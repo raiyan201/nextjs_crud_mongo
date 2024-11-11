@@ -57,7 +57,7 @@ const EditForm = ({id,title,description}) => {
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input className='border border-slate-500 px-8 py-4' type="text"  placeholder='Topic Title' onChange={(e)=>setNewTitle(e.target.value)}  value={newTitle}/>
         <input className='border border-slate-500 px-8 py-4' type="text"  placeholder='Topic Description'  onChange={(e)=>setNewDescription(e.target.value)} value={newDescription}/>
-        <button className='bg-green-500 text-white py-3 px-5 w-fit'>Update Topics</button>
+        <button  className='bg-green-500 text-white py-3 px-5 w-fit'>Update Topics</button>
     </form>  
     
   )

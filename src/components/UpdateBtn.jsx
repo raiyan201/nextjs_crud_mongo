@@ -4,7 +4,7 @@ import { HiOutlineTrash, HiPencilAlt } from "react-icons/hi";
 const UpdateBtn = ({id}) => {
   return (
     <div>
-        <Link  href={`/editTopic/${id}`}><HiPencilAlt size={24}/></Link>
+        <Link title="Update the fields"  href={`/editTopic/${id}`}><HiPencilAlt size={24}/></Link>
     </div>
   )
 }

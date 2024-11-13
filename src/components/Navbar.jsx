@@ -8,8 +8,6 @@ export const Navbar = () => {
   
   const context=useContext(UserContext)
   console.log('context_in_navbar',context.user)
-  // const name= context.user.name
-  // console.log(name)
 
 
   return (

@@ -6,7 +6,7 @@ import {User} from "../../../Models/userModels";
 
 export async function POST(req){
     
-    connectDB()
+    await connectDB()
 
     try{
 
@@ -17,6 +17,7 @@ export async function POST(req){
     }
     
     const isUserPresent=await User.findOne({username});
+    console.log('isUserPresent',isUserPresent)
     
     if(isUserPresent){
         const isMatch = await bcrypt.compare(password,isUserPresent.password)
@@ -27,7 +28,8 @@ export async function POST(req){
     }
 
     const name=isUserPresent.name
-    const jwt_token=jwt.sign({name,username},'shhwwhs');
+    const admin_status=isUserPresent.admin_status
+    const jwt_token=jwt.sign({name,username,admin_status},'shhwwhs');
     const response=NextResponse.json({"msg":"token created for login ","status":201})
     response.cookies.set("jwt_token",jwt_token)
 

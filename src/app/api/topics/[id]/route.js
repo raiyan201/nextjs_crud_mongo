@@ -14,7 +14,7 @@ export async function PUT(request,{params}){
 }
 
 export async function GET(request,{params}){
-    connectDB()
+    await connectDB()
     try{
         const{id}=params
         const topic=await Topic.findOne({_id:id})

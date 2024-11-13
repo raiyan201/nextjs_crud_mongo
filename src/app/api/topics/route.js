@@ -5,8 +5,9 @@ import { NextURL } from "next/dist/server/web/next-url";
 
 
 export async function POST(req){
-    connectDB()
+    
     try{
+        await  connectDB()
         const body=await req.json();
         const{title,description}=body
         await Topic.create({title,description})

@@ -15,6 +15,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  admin_status:{
+    type:Boolean,
+    default:false
+  },
+  
 });
 
 // Fix: Ensure model caching is case-sensitive
@@ -31,7 +37,8 @@ const topicSchema = new mongoose.Schema({
   delete_status:{
     type:Boolean,
     default:false
-  }
+  },
+
 });
 
 // Ensure Topic model is only created once

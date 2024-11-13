@@ -6,7 +6,8 @@ import User from "../../../Models/userModels";
 
 export async function GET(req){
     
-    connectDB()
+    await  connectDB()
+    
 
     try{
         const response=NextResponse.json({"msg":"logout successfull","status":200})

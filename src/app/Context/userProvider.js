@@ -15,7 +15,7 @@ const userProvider = ({children}) => {
             const currentUsers =  await currentUser()
             console.log('currentUsers',currentUsers)
             // setUser({...currentUsers})
-            setUser(currentUsers.data); // Only set the user data you need
+            setUser(currentUsers.data); // Only set the user data we need
 
         } catch (error) {
             console.log(error)

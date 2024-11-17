@@ -11,8 +11,10 @@ export const Dashboard =  () => {
     const[topics,setTopics]=useState([])
     const [error, setError] = useState(null);
 
-    const context=useContext(UserContext)
-    console.log('context_in_dashboard',context.user)
+    const {user,isLoading}=useContext(UserContext)
+    console.log('context_in_dashboard',user)
+
+ 
 
 
     useEffect(()=>{
@@ -42,7 +44,14 @@ export const Dashboard =  () => {
           }
     },[])
     
-   
+    if (isLoading) {
+      return (
+        <nav className="flex justify-between justify-items-start bg-slate-900 px-8 py-5">
+          <p className="text-white">Loading...</p>
+        </nav>
+      );
+    }
+  
     
     return (
         <>
@@ -57,8 +66,8 @@ export const Dashboard =  () => {
                 <div className="flex gap-2">
                 <UpdateBtn id={t._id}/>
 
-{context.user.admin_status?( < RemoveBtn id={t._id}/>):(< SoftDeleteBtn   id={t._id}/>)}
-
+      {user ?( < RemoveBtn id={t._id}/>):(< SoftDeleteBtn   id={t._id}/>)}
+              
                 </div>
       </div>
       

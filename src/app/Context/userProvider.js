@@ -1,31 +1,33 @@
 'use client'
-// import { httpAxios } from "@/helper/httpHelper";
 
 import React, { useEffect, useState } from 'react'
 import UserContext from './userContext'
 import {currentUser} from '../services/userServices'
 
-const userProvider = ({children}) => {
+const UserProvider = ({children}) => {
     const [user,setUser]=useState(null)
-    // const result=
+    const[isLoading, setisLoading]=useState(true)
 
     useEffect(()=>{    
     async function load(){
         try {
             const currentUsers =  await currentUser()
             console.log('currentUsers',currentUsers)
-            // setUser({...currentUsers})
-            setUser(currentUsers.data); // Only set the user data we need
+            console.log('currentUsers_Data',currentUsers.data)
+            setUser(currentUsers.data); 
 
         } catch (error) {
             console.log(error)
             setUser(null)
         }
+        finally{
+            setisLoading(false)
+        }
     } 
         load()
     },[])    
     
-return (<UserContext.Provider value={{user,setUser}}>{children}</UserContext.Provider>
+return (<UserContext.Provider value={{user,setUser,isLoading}}>{children}</UserContext.Provider>
 )
 }
-export default userProvider
+export default UserProvider

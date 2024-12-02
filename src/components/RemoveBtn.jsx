@@ -2,11 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { HiOutlineTrash, HiPencilAlt } from "react-icons/hi";
+import Trash from "./Trash";
 
-import { useContext } from "react";
-import UserContext from "../app/context/userContext";
-
-const RemoveBtn = ({id}) => {
+const RemoveBtn = ({id,refresh}) => {
 const router = useRouter();
 
 const removeTopic=async()=>{
@@ -16,8 +14,8 @@ const removeTopic=async()=>{
             {method:"DELETE"},
         )
         if(res.ok){
-            alert("deleted")
-            router.refresh();
+            alert("Permanent Deleted")
+            refresh();            
         }
     }
 }

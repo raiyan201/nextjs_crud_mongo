@@ -35,4 +35,9 @@ export async function PATCH(request,{params}){
         await Topic.findByIdAndUpdate(id,{delete_status:true})
         return NextResponse.json({msg:"Soft Deletion Successfull"})
     }
+    if(action=="Restore"){
+        await Topic.findByIdAndUpdate(id,{delete_status:false})
+        return NextResponse.json({msg:"Restore Successfull"})
+    }
+
 }

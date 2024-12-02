@@ -5,7 +5,7 @@ import { useContext } from "react";
 import UserContext from "../app/context/userContext";
 import { AiTwotoneDelete } from "react-icons/ai";
 
-const SoftDeleteBtn = ({id}) => {
+const SoftDeleteBtn = ({id,refresh}) => {
 const router = useRouter();
 
     const removeTopic=async()=>{
@@ -18,8 +18,9 @@ const router = useRouter();
                     headers:{"Content-Type":"application/json"}
                 })                
                 if(res.ok){
-                    alert("DEleted")
-                    router.refresh();
+                    alert("Deleted")
+                    refresh();
+
                 }
             }
         } 

@@ -53,14 +53,36 @@ export const Dashboard =  () => {
         </nav>
       );
     }
+
+
+    const DeleteAllTopic=async()=>{
+      const confirmed=confirm('Are you sure you want to Delete All Topics')
+    if(confirmed){
+      const res=await fetch(`http://localhost:3000/api/topics`,{method:"PATCH"})
+      if(res.ok){
+        alert("Deleted All Successfully")
+        getTopics()
+        // refresh()
+      }
+  
+    }
+    }
   
     
     return (
         <>
         
-        <div className="flex justify-end">
+        {topics.length>0?(<div className="flex justify-end">
+          {/* ({topics.length}) */}
+
+        <button type="button" className="bg-slate-950 my-2 mr-1 p-3 text-white"onClick={DeleteAllTopic} title="Delete All">Delete</button>
         <Link className="bg-slate-950 my-2 p-3 text-white " href={"/trash"}>Trash</Link>
         </div>
+        ): 
+        <div className="flex justify-end">    
+           <Link className="bg-slate-950 my-2 p-3 text-white " href={"/trash"}>Trash</Link>
+           </div>}
+
 
             {topics.map((t)=>(
     <div key={t._id} className="p-4 border border-slate-300 my-4 flex justify-between gap-5 items-start">

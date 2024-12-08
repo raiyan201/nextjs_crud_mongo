@@ -13,3 +13,28 @@ export async function GET(){
         console.log(error)
     }
 }
+
+
+export async function PATCH(request,{params}){
+    try {
+
+        await connectDB()
+        const {action}=await request.json()
+        console.log('action',action)
+
+        if(action=='RestoreAll'){
+        const result=await Topic.updateMany({delete_status:true},{delete_status:false})
+        }
+
+        if(action=='DeleteAll'){
+            const result=await Topic.deleteMany({delete_status:true})
+        }
+
+        
+        return NextResponse.json({msg:"Topics Restore"},{status:"200"})
+
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}

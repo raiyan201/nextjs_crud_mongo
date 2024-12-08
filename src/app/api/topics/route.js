@@ -5,7 +5,6 @@ import { NextURL } from "next/dist/server/web/next-url";
 
 
 export async function POST(req){
-    
     try{
         await  connectDB()
         const body=await req.json();
@@ -45,4 +44,22 @@ export async function DELETE(request){
     catch(err){
         console.log(err)
     }
+}
+
+
+export async function PATCH(request){
+    try {
+
+        await connectDB()
+        const result=await Topic.updateMany({delete_status:false},{delete_status:true})
+        return NextResponse.json({msg:"Topics Deleted"},{status:"200"})
+
+    } 
+    catch (error) {
+        console.log(error)
+    }
+
+    //const {action}=await request.json()
+    //console.log('action',action)
+
 }

@@ -31,6 +31,7 @@ export async function PATCH(request,{params}){
     const{id}=params
     const {action}=await request.json()
     console.log('action',action)
+    
     if(action=="softDelete"){
         await Topic.findByIdAndUpdate(id,{delete_status:true})
         return NextResponse.json({msg:"Soft Deletion Successfull"})
@@ -39,5 +40,4 @@ export async function PATCH(request,{params}){
         await Topic.findByIdAndUpdate(id,{delete_status:false})
         return NextResponse.json({msg:"Restore Successfull"})
     }
-
 }

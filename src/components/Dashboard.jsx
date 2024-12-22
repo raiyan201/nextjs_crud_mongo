@@ -6,11 +6,15 @@ import SoftDeleteBtn from "./SoftDeleteBtn"
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../app/context/userContext";
 import Link from "next/link";
+import Input from "./Input";
+import $ from 'jquery';
+
 
 export const Dashboard =  () => {    
 
     const[topics,setTopics]=useState([])
     const [error, setError] = useState(null);
+    const[isselectAll,setIsselectAll]=useState(false);
 
     const {user,isLoading}=useContext(UserContext)
     console.log('context_in_dashboard',user)
@@ -56,9 +60,20 @@ export const Dashboard =  () => {
 
 
     const DeleteAllTopic=async()=>{
+          const ischecked = $('#selectAllCheckbox').is(":checked") || $('.checkboxes').is(":checked");    
+          if(ischecked) {
+
       const confirmed=confirm('Are you sure you want to Delete All Topics')
     if(confirmed){
-      const res=await fetch(`http://localhost:3000/api/topics`,{method:"PATCH"})
+      let id_delete=[]
+          $('.checkboxes:checked').each(function(){
+            id_delete.push(this.id)
+          })
+          console.log('id_delete',id_delete)
+      
+      const res=await fetch(`http://localhost:3000/api/topics`,{method:"PATCH", body:JSON.stringify({action:"DeleteAll",id_delete:id_delete}),
+      headers:{"Content-Type":"application/json"},}
+      )
       if(res.ok){
         alert("Deleted All Successfully")
         getTopics()
@@ -67,23 +82,50 @@ export const Dashboard =  () => {
   
     }
     }
-  
+    else{
+      alert("please select the fields")
+    }
+  }
+
+    const handleselectAll = (event) => {
+    const ischecked=event.target.checked;
+    setIsselectAll(ischecked);
+
+    document.querySelectorAll('.checkboxes').forEach((checkbox)=>{
+      checkbox.checked=ischecked;
+    })
+    };
     
+
     return (
         <>
         
-        {topics.length>0?(<div className="flex justify-end">
-          {/* ({topics.length}) */}
+        {topics.length>0?(
+          <>
+          <div className="flex justify-end">
 
-        <button type="button" className="bg-slate-950 my-2 mr-1 p-3 text-white"onClick={DeleteAllTopic} title="Delete All">Delete</button>
+        <button type="button" className="bg-slate-950 my-2 mr-1 p-3 text-white"onClick={DeleteAllTopic} title="Delete All">Delete All</button>
+       
         <Link className="bg-slate-950 my-2 p-3 text-white " href={"/trash"}>Trash</Link>
+       
         </div>
+
+
+<div className="flex justify-end">
+<label htmlFor="" className="mr-2">Select All </label> 
+   <input type="checkbox" id="selectAllCheckbox"  onChange={handleselectAll} /> 
+</div>
+
+</>
+
+
         ): 
         <div className="flex justify-end">    
            <Link className="bg-slate-950 my-2 p-3 text-white " href={"/trash"}>Trash</Link>
+           
            </div>}
 
-
+           
             {topics.map((t)=>(
     <div key={t._id} className="p-4 border border-slate-300 my-4 flex justify-between gap-5 items-start">
                 <div>
@@ -91,6 +133,9 @@ export const Dashboard =  () => {
                     <div>{t.description}</div> 
                 </div>
                 <div className="flex gap-2">
+
+                <input type="checkbox" className="checkboxes" id={t._id}/> 
+
                 <UpdateBtn id={t._id}/>
                 {/* {user ?( < RemoveBtn id={t._id}/>):(< SoftDeleteBtn   id={t._id}/>)} */}
                 {user ?(< SoftDeleteBtn   id={t._id} refresh={getTopics}/>):(< RemoveBtn id={t._id}/>)}

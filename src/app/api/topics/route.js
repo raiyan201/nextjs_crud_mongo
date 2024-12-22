@@ -49,11 +49,14 @@ export async function DELETE(request){
 
 export async function PATCH(request){
     try {
-
+        
         await connectDB()
-        const result=await Topic.updateMany({delete_status:false},{delete_status:true})
+        const {id_delete}=await request.json()
+        
+        console.log('id_delete:',id_delete)
+        
+        const result=await Topic.updateMany({_id:id_delete},{delete_status:true})
         return NextResponse.json({msg:"Topics Deleted"},{status:"200"})
-
     } 
     catch (error) {
         console.log(error)

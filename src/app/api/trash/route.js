@@ -19,15 +19,18 @@ export async function PATCH(request,{params}){
     try {
 
         await connectDB()
-        const {action}=await request.json()
+        const {action,id_restore,id_delete}=await request.json()
         console.log('action',action)
+        
+        console.log('id_restore:',id_restore)
+        console.log('id_delete:',id_delete)
 
         if(action=='RestoreAll'){
-        const result=await Topic.updateMany({delete_status:true},{delete_status:false})
+        const result=await Topic.updateMany({_id:id_restore},{delete_status:false})
         }
 
         if(action=='DeleteAll'){
-            const result=await Topic.deleteMany({delete_status:true})
+            const result=await Topic.deleteMany({_id:id_delete},{delete_status:true})
         }
 
         

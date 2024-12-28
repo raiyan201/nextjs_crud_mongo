@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connectDB from "../../../db/config";
-import { Topic } from "../../../Models/userModels";
+import { Topic,History } from "../../../Models/userModels";
 
 
 export async function GET(){
@@ -24,16 +24,45 @@ export async function PATCH(request,{params}){
         
         console.log('id_restore:',id_restore)
         console.log('id_delete:',id_delete)
+        
 
-        if(action=='RestoreAll'){
-        const result=await Topic.updateMany({_id:id_restore},{delete_status:false})
-        }
+        if(id_restore){
 
-        if(action=='DeleteAll'){
-            const result=await Topic.deleteMany({_id:id_delete},{delete_status:true})
+        for(let i=0;i<id_restore.length;i++){
+            const topic = await Topic.findById(id_restore[i]);
+            console.log('topic..:', topic);    
+            
+            if(action=='RestoreAll'){
+            
+                const result=await Topic.updateMany({_id:id_restore},{delete_status:false})
+                
+                await History.create({title: topic.title,
+                    description: topic.description,
+                    action:"Restored"})
+            }
         }
+    }
+        
 
         
+    if(action=='DeleteAll'){
+
+    if(id_delete){
+
+        for(let i=0;i<id_delete.length;i++){
+            const topic = await Topic.findById(id_delete[i]);
+            console.log('topic..to_delete_permanently:', topic);    
+            
+                await History.create({title: topic.title,
+                    description: topic.description,
+                    action:"Permanently Deleted"})
+                }
+                const result=await Topic.deleteMany({_id:id_delete},{delete_status:true})
+                
+        }
+    }
+        
+
         return NextResponse.json({msg:"Topics Restore"},{status:"200"})
 
     } 

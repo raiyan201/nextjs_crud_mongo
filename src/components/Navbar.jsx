@@ -25,6 +25,10 @@ export const Navbar = () => {
       <Link className="bg-white p-3 ml-4" href={"/addTopic"}>
         Add Topic
       </Link>
+      <Link className="bg-white p-3 ml-4" href={"/history"}>
+        History
+      </Link>
+      
       <Profile />
     </nav>
   );

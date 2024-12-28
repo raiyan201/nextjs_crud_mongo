@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { title } from "process";
 import { useState } from "react";
 
 const page = () => {
@@ -23,16 +22,17 @@ const page = () => {
         headers:{
           "Content-type":"application/json",
         },
-        body:JSON.stringify({title,description}),
+        body:JSON.stringify({title,description,}),
       });
 
       if(res.ok){
+        
         router.push('/dashboard')
         router.refresh();
       }
       
     } catch (error) {
-      console.log(err)
+      console.log(error)
     }
   }
 

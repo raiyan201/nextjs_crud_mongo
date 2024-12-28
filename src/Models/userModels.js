@@ -38,11 +38,31 @@ const topicSchema = new mongoose.Schema({
     type:Boolean,
     default:false
   },
+  
+  
 
 });
 
 // Ensure Topic model is only created once
 const Topic = mongoose.models.Topic || mongoose.model("Topic", topicSchema);
 
+const historySchema = new mongoose.Schema({
+  title: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },  
+  action: {
+    type: String,
+  },  
+  date_time:{
+    type:Date,
+    default:Date.now
+  }
+})
+
+const History = mongoose.models.History || mongoose.model("History", historySchema);
+
 // Export models
-export { User, Topic };
+export { User, Topic, History};

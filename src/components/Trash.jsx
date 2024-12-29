@@ -149,7 +149,7 @@ else{
 
 <input type="checkbox" className="checkboxes" id={t._id}/>
 
-  <RestoreBtn id={t._id} refresh={getTrash}/>
+<RestoreBtn id={t._id} refresh={getTrash}/>
 
 <RemoveBtn id={t._id} refresh={getTrash}/>
 

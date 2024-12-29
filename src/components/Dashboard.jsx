@@ -31,8 +31,12 @@ export const Dashboard =  () => {
           const data=await res.json() 
           console.log('data:', data);
           console.log('Topics received dash:', data.topics);
-          setTopics(data.topics)
+          const sortedTopics=data.topics.sort((a,b)=>new Date(b.date_time)-new Date(a.date_time))
+          console.log('sortedTopics:',sortedTopics)
+          // setTopics(data.topics)
+          setTopics(sortedTopics)
       }     
+
       catch (err) {
        console.log(err)   
        setError(err.message)

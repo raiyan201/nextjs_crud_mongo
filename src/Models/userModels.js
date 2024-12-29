@@ -38,8 +38,10 @@ const topicSchema = new mongoose.Schema({
     type:Boolean,
     default:false
   },
-  
-  
+  date_time:{
+    type:Date,
+    default:Date.now
+  }
 
 });
 

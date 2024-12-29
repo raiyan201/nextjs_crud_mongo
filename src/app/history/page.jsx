@@ -1,6 +1,7 @@
 "use client";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react"
+import * as XLSX from "xlsx";
 
 const page = () => {
 
@@ -17,14 +18,15 @@ const page = () => {
     const data=await res.json()
     console.log('history',data)
     console.log('result_history',data.history)
-    setHistory(data.history)
+    // setHistory(data.history)
+    const sortedHistory=data.history.sort((a,b)=>new Date(b.date_time)-new Date(a.date_time))
+    console.log('sortedHistory:',sortedHistory)
+    setHistory(sortedHistory)         
   }
   
   catch(err){
     console.log(err)
-  }
-
-  
+  }  
 }
   
 // fetchdata()
@@ -49,9 +51,17 @@ const columns = [
   { field: "date_time", headerName: "Created At", flex: 1  },
 ];
 
+const exportToExcel=()=>{
+  const worksheet=XLSX.utils.json_to_sheet(history)
+  const workbook=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook,worksheet,"history")
+  XLSX.writeFile(workbook,"history.xlsx")
+}
+
+
 return (
     <div>
-  <h1 className="text-center text-white bg-red-950 px-5 py-3" style={{ fontSize: '24px', marginTop:'5px' }}>History</h1>
+  <div className="text-center text-white bg-red-950 px-5 py-3" style={{ fontSize: '24px', marginTop:'5px' }} >History <span style={{ fontSize: '15px', float: 'right',}} className="bg-lime-800 p-3 "><button onClick={exportToExcel}> Export</button></span></div>
 
     <DataGrid
     rows={history}
@@ -61,11 +71,6 @@ return (
     rowsPerPageOptions={[5, 10, 20,50]}
     pagination
 
-    // initialState={{
-    //   pagination: {
-    //     paginationModel: { pageSize: 50, page: 0 }, // Default page size of 50
-    //   },
-    // }}
     initialState={{
       pagination:{
         paginationModel:{pageSize:50,page:0}

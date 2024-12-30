@@ -48,8 +48,41 @@ const columns = [
   { field: "title", headerName: "Title", flex: 1  },
   { field: "description", headerName: "Description", flex: 1  },
   { field: "action", headerName: "Action Performed", flex: 1  },
-  { field: "date_time", headerName: "Created At", flex: 1  },
+
+
+  // Column for the created date
+  {
+    field: "created_date",
+    headerName: "Created Date",
+    flex: 1,
+    renderCell: (params) => {
+      const date = new Date(params.row.date_time);
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+    },
+  },
+
+  // Column for the created time
+  {
+    field:"created_time",
+    headerName:"Created Time",
+    flex:1,
+    renderCell:(params)=>{
+      const date=new Date(params.row.date_time);
+      return date.toLocaleTimeString("en-US",{
+        hour:"2-digit",
+        minute:"2-digit",
+        second:"2-digit",
+        hour12: true,
+
+      });
+    }
+  }
 ];
+
 
 const exportToExcel=()=>{
   const worksheet=XLSX.utils.json_to_sheet(history)

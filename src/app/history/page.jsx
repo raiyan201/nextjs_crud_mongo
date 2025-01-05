@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react"
 import * as XLSX from "xlsx";
 
-const page = () => {
+const Page = () => {
 
   const[history,setHistory]=useState([]);
 
@@ -117,4 +117,4 @@ return (
   )
 }
 
-export default page
+export default Page

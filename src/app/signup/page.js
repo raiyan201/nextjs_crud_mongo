@@ -2,8 +2,8 @@
 import Register from '../../components/Signup';
 // import Register from 'components/Signup';
 
-const page=()=>{
+const Page=()=>{
     return <Register />
 };
 
-export default page;
+export default Page;

@@ -1,6 +1,6 @@
 import Trash from "../../components/Trash"
 
-const page = () => {  
+const Page = () => {  
 return (
     <div>
         <Trash/>
@@ -8,4 +8,4 @@ return (
   )
 }
 
-export default page
+export default Page

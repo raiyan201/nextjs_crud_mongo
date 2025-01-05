@@ -64,7 +64,7 @@ const Login=()=>{
                 >
                     Submit
                 </button>
-                <p className="mt-4">Don't have an account?{""}
+                <p className="mt-4">{`Don't have an account?`}{""}
                     <Link href="/signup" className="text-blue-600 hover:underline">Register</Link>
                 </p>
             </form>

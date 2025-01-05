@@ -22,7 +22,7 @@ const getTopicsByID=async(id)=>{
 
 
 
-const page = async({params}) => {
+const Page = async({params}) => {
   const {id}=params;
   console.log('ID', id);
 
@@ -33,6 +33,6 @@ const page = async({params}) => {
 
     return <EditForm id={id} title={title} description={description} />
   }
-  export default page
+  export default Page
 
   

@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
   
   // const context=useContext(UserContext)
   // console.log('context_in_layout',context.user)
+  console.log(process.cwd());
 
   return (
     <html lang="en">

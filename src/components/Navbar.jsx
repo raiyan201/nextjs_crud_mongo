@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Profile from "./Profile";
 import { useContext } from "react";
-import UserContext from "../app/context/userContext";
+import UserContext from "src/app/context/userContext";
 
 export const Navbar = () => {
   const { user, isLoading } = useContext(UserContext);

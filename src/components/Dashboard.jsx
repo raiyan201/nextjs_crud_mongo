@@ -4,10 +4,10 @@ import RemoveBtn from "./RemoveBtn";
 import UpdateBtn from "./UpdateBtn"
 import SoftDeleteBtn from "./SoftDeleteBtn"
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../app/context/userContext";
 import Link from "next/link";
 import Input from "./Input";
 import $ from 'jquery';
+import UserContext from "src/app/context/userContext";
 
 
 export const Dashboard =  () => {    

@@ -23,8 +23,10 @@ export const Dashboard =  () => {
 
     const getTopics = async () =>{
       try {
-          const res= await fetch("http://localhost:3000/api/topics",{cache:"no-store"})
-          console.log('res',res)
+        
+        const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+        const res = await fetch(`${apiBaseUrl}/api/topics`, { cache: 'no-store' });      
+        console.log('res',res)
           if(!res.ok){
               throw new Error("failed to fetchd data");        
           }

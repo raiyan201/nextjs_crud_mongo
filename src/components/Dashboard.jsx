@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Input from "./Input";
 import $ from 'jquery';
-import UserContext from "src/app/context/userContext";
+import UserContext from "../app/context/userContext";
 
 
 export const Dashboard =  () => {    

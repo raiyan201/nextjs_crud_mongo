@@ -30,4 +30,5 @@ const UserProvider = ({children}) => {
 return (<UserContext.Provider value={{user,setUser,isLoading}}>{children}</UserContext.Provider>
 )
 }
+
 export default UserProvider

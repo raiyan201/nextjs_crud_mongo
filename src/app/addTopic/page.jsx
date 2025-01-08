@@ -17,7 +17,9 @@ const Page = () => {
     }
 
     try {
-      const res= await fetch('http://localhost:3000/api/topics',{
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
+      const res= await fetch(`${apiBaseUrl}/api/topics`,{
         method:"POST",
         headers:{
           "Content-type":"application/json",

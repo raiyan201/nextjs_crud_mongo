@@ -33,6 +33,7 @@ export const Dashboard =  () => {
               throw new Error("failed to fetchd data");        
           }
           const data=await res.json() 
+          
           console.log('data:', data);
           console.log('Topics received dash:', data.topics);
           const sortedTopics=data.topics.sort((a,b)=>new Date(b.date_time)-new Date(a.date_time))

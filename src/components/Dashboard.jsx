@@ -25,6 +25,8 @@ export const Dashboard =  () => {
       try {
         
         const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+        console.log('API Base URL:', apiBaseUrl);
+
         const res = await fetch(`${apiBaseUrl}/api/topics`, { cache: 'no-store' });      
         console.log('res',res)
           if(!res.ok){

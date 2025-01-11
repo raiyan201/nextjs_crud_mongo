@@ -1,5 +1,4 @@
 'use client';
-
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -18,6 +17,7 @@ const Page = () => {
 
     try {
       const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+      console.log('API Base URL:', apiBaseUrl);
 
       const res= await fetch(`${apiBaseUrl}/api/topics`,{
         method:"POST",

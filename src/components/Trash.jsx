@@ -13,8 +13,11 @@ const Trash = () => {
 
 
   const getTrash=async()=>{
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    console.log('API Base URL:', apiBaseUrl);
+     
     try {
-      const res=await fetch("http://localhost:3000/api/trash",{cache:"no-store"})
+      const res=await fetch(`${apiBaseUrl}/api/trash`,{cache:"no-store"})
       console.log('result_trash',res)
       if(!res.ok){
         throw new Error("failed to fetchd data");        
@@ -36,6 +39,8 @@ const Trash = () => {
 
 
   const restoreAllTopic=async()=>{
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    console.log('API Base URL:', apiBaseUrl);
     
     const ischecked = $('#selectAllCheckbox').is(":checked") || $('.checkboxes').is(":checked");    if(ischecked) {
       const confirmed=confirm('Are you sure you want to Restore All Topics')
@@ -56,7 +61,7 @@ const Trash = () => {
       })
         console.log('id_restore',id_restore)
 
-        const res=await fetch(`http://localhost:3000/api/trash`,{method:"PATCH",
+        const res=await fetch(`${apiBaseUrl}/api/trash`,{method:"PATCH",
         body:JSON.stringify({action:"RestoreAll",id_restore:id_restore}),
           headers:{"Content-Type":"application/json"},}
       )
@@ -73,6 +78,9 @@ const Trash = () => {
 
 
   const DeleteAllTopic=async()=>{
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    console.log('API Base URL:', apiBaseUrl);
+    
     const ischecked = $('#selectAllCheckbox').is(":checked") || $('.checkboxes').is(":checked");    
     
     if(ischecked) {
@@ -87,7 +95,7 @@ const Trash = () => {
     })
     console.log('id_delete',id_delete)
 
-    const res=await fetch(`http://localhost:3000/api/trash`,{method:"PATCH",
+    const res=await fetch(`${apiBaseUrl}/api/trash`,{method:"PATCH",
       body:JSON.stringify({action:"DeleteAll",id_delete:id_delete}),
       headers:{"Content-Type":"application/json"},}
     )

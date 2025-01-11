@@ -9,10 +9,13 @@ const SoftDeleteBtn = ({id,refresh}) => {
 const router = useRouter();
 
     const removeTopic=async()=>{
+        const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+        console.log('API Base URL:', apiBaseUrl);
+    
         const confirmed=confirm("Are you sure you want to Delete");
         try {
             if(confirmed){
-                const res=await fetch(`http://localhost:3000/api/topics/${id}`,{
+                const res=await fetch(`${apiBaseUrl}/api/topics/${id}`,{
                     method:"PATCH",
                     body:JSON.stringify({action:"softDelete"}),
                     headers:{"Content-Type":"application/json"}

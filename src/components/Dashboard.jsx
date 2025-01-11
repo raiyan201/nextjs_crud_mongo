@@ -42,7 +42,7 @@ export const Dashboard =  () => {
 
 
 
-          
+
           // setTopics(data.topics)
           setTopics(sortedTopics)
       }     
@@ -74,6 +74,9 @@ export const Dashboard =  () => {
 
 
     const DeleteAllTopic=async()=>{
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+      console.log('API Base URL:', apiBaseUrl);
+    
           const ischecked = $('#selectAllCheckbox').is(":checked") || $('.checkboxes').is(":checked");    
           if(ischecked) {
 
@@ -85,7 +88,7 @@ export const Dashboard =  () => {
           })
           console.log('id_delete',id_delete)
       
-      const res=await fetch(`http://localhost:3000/api/topics`,{method:"PATCH", body:JSON.stringify({action:"DeleteAll",id_delete:id_delete}),
+      const res=await fetch(`${apiBaseUrl}/api/topics`,{method:"PATCH", body:JSON.stringify({action:"DeleteAll",id_delete:id_delete}),
       headers:{"Content-Type":"application/json"},}
       )
       if(res.ok){

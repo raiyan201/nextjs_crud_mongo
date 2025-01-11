@@ -5,8 +5,10 @@ const getTopicsByID=async(id)=>{
   try {
 
     console.log('___id',id)
-
-    const res= await fetch(`http://localhost:3000/api/topics/${id}`,{cache:"no-store"})
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    console.log('API Base URL:', apiBaseUrl);
+    
+    const res= await fetch(`${apiBaseUrl}/api/topics/${id}`,{cache:"no-store"})
       console.log('res',res)
       if(!res.ok){
           throw new Error("failed to fetchd data");        

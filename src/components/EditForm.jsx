@@ -28,8 +28,10 @@ const EditForm = ({id,title,description}) => {
     }
 
     try {
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+      console.log('API Base URL:', apiBaseUrl);
 
-      const res= await fetch(`http://localhost:3000/api/topics/${id}`,{
+      const res= await fetch(`${apiBaseUrl}/api/topics/${id}`,{
         method:"PUT",
         headers:{
           "Content-type":"application/json",
